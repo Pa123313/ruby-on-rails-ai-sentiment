@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: rails-pipeline
+spec:
+  params:
+    - name: IMAGE
+  tasks:
+    - name: kaniko
+      taskRef:
+        name: kaniko-build
+      params:
+        - name: IMAGE
+          value: $(params.IMAGE)

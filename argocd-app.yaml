@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rails-app
+  namespace: argocd       # ✅ Required so ArgoCD can detect and manage it
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/Pa123313/ruby-on-rails-ai-sentiment'
+    targetRevision: HEAD
+    path: manifests
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+

@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: kaniko-pipeline
+spec:
+  workspaces:
+    - name: shared-workspace
+  params:
+    - name: IMAGE
+      type: string
+  tasks:
+    - name: kaniko-build
+      taskRef:
+        name: kaniko-build
+      params:
+        - name: IMAGE
+          value: docker.io/pavithra809/rails-ai-sentiment:latest
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+
+
