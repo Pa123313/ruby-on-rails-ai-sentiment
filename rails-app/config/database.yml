@@ -5,7 +5,7 @@ default: &default
   host: postgres                # This must match the Service name in Kubernetes
   port: 5432
   username: postgres
-  password: mysecretpassword    # Same as in your postgres-deployment.yml
+  password: password    # Same as in your postgres-deployment.yml
   timeout: 5000
 
 development:
