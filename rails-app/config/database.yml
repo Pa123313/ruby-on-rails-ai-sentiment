@@ -1,11 +1,12 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: 5
-  username: postgres
-  password: postgres
-  host: postgres  # Kubernetes service name for Postgres
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: postgres                # This must match the Service name in Kubernetes
   port: 5432
+  username: postgres
+  password: mysecretpassword    # Same as in your postgres-deployment.yml
+  timeout: 5000
 
 development:
   <<: *default
@@ -18,4 +19,7 @@ test:
 production:
   <<: *default
   database: rails_app_production
+  username: postgres
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
 
