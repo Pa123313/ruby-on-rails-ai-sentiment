@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: rails
-        image: pavithra809/rails-ai-sentiment:latest 
+        image: image: pavithra809/rails-ai-sentiment:v2 
         ports:
         - containerPort: 3000
